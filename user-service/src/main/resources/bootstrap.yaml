@@ -1,0 +1,12 @@
+#Ya no son necesarios porque introducimos el microservicio config-server
+#server.port=8001
+#spring.application.name=user-service
+#name: user-service debe coincidir con el yaml creodo en config-data
+#Se debe arrancar primero el config-server
+spring:
+  application:
+    name: user-service
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8081

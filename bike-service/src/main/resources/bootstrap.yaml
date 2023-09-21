@@ -1,0 +1,12 @@
+#Ya no son necesarios porque introducimos el microservicio config-server
+#server.port=8003
+#spring.application.name=bike-service
+#name: bike-service debe coincidir con el yaml creodo en config-data
+#Se debe arrancar primero el config-server
+spring:
+  application:
+    name: bike-service
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8081
