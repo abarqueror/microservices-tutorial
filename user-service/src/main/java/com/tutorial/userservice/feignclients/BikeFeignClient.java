@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-@FeignClient(name = "bike-service", url = "http://localhost:8003", path = "/bike")
+//Ya no haria falta url = "http://localhost:8003" porque registramos con Eureka
+@FeignClient(name = "bike-service", path = "/bike")
+//@FeignClient(name = "bike-service", url = "http://localhost:8003", path = "/bike")
 public interface BikeFeignClient {
     @PostMapping
     Bike save(@RequestBody Bike bike);

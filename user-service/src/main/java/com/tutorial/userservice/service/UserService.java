@@ -6,7 +6,6 @@ import com.tutorial.userservice.feignclients.CarFeignClient;
 import com.tutorial.userservice.model.Bike;
 import com.tutorial.userservice.model.Car;
 import com.tutorial.userservice.repository.UserRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -14,7 +13,6 @@ import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -46,11 +44,14 @@ public class UserService {
 
     //restTemplate para acceder a los otros microservicios
     public List<Car> getCars(int userId) {
-        return restTemplate.getForObject("http://localhost:8002/car/byuser/" + userId, List.class);
+        //Ya que usamos discovery con Eureka podemos usar el nombre del servicio
+        //return restTemplate.getForObject("http://localhost:8002/car/byuser/" + userId, List.class);
+        return restTemplate.getForObject("http://car-service/car/byuser/" + userId, List.class);
     }
 
     public List<Bike> getBikes(int userId) {
-        return restTemplate.getForObject("http://localhost:8003/bike/byuser/" + userId, List.class);
+//        return restTemplate.getForObject("http://localhost:8003/bike/byuser/" + userId, List.class);
+        return restTemplate.getForObject("http://bike-service/bike/byuser/" + userId, List.class);
     }
 
     public Car saveCar(int userId, Car car) {

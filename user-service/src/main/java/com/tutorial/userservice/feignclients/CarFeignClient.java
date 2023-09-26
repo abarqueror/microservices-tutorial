@@ -6,7 +6,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "car-service", url = "http://localhost:8002", path="/car")
+//Ya no haria falta url = "http://localhost:8002" porque registramos con Eureka
+@FeignClient(name = "car-service", path="/car")
+//@FeignClient(name = "car-service", url = "http://localhost:8002", path="/car")
+
+//No compila separando /car en @RequestMapping de @FeignClient.Se incluye path en @FeignClient
 //@FeignClient(name = "car-service", url = "http://localhost:8002")
 //@RequestMapping("/car")
 public interface CarFeignClient {
