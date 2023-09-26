@@ -6,6 +6,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableFeignClients
+//@EnableEurekaClient esta deprecated.Con añadir spring-cloud-starter-netflix-eureka-client en pom es suficiente
 public class UserServiceApplication {
 
 	public static void main(String[] args) {
