@@ -1,10 +1,18 @@
 server:
-  port: 8001
+  #cambio para multiples instancias.Que lo coja dinamicamente
+  #port: 8001
+  #PONEMOS PORT 0 para que se busquen los puertos libres en el entorno donde se aloja el  microserv.De entre los puertos libres se asignará uno aleatoriamente
+  #https://www.youtube.com/watch?list=PL4bT56Uw3S4yTSw5Cg1-mhgoS85fVeFkT&t=277&v=q5Qsj8ogeqU&feature=youtu.be
+  port: ${PORT:${SERVER_PORT:0}}
 eureka:
   client:    
     fetch-registry: true
     register-with-eureka: true
     service-url:
       default-zone: http://localhost:8761/eureka
-    instance: 
-      hostname: localhost  
+  instance: 
+      #Para multiples inst.Para que sea dinámico el bind 
+      #hostname: localhost - Ya no nos vale.Debe ser dinámico
+      #${spring.application.name} - Bind service
+      #${spring.application.instance_id:${random.value}} Para multiples instancias, si tengo varias no pueden llamarse igual.Se asignará aleatroiamente
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
