@@ -1,6 +1,6 @@
 server:
   port: 8080
-  
+
 eureka:
   client:    
     fetch-registry: true
@@ -16,15 +16,16 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: user-service #debe ser mismo nombre que con el registrado en eureka
+        #debe ser mismo nombre que con el registrado en eureka
+        - id: user-service 
           uri: lb://user-service
           predicates: 
             - Path=/user_/**
-        - id: bike-service #debe ser mismo nombre que con el registrado en eureka
+        - id: bike-service
           uri: lb://bike-service
           predicates: 
             - Path=/bike/**            
-        - id: car-service #debe ser mismo nombre que con el registrado en eureka
+        - id: car-service
           uri: lb://car-service
           predicates: 
             - Path=/car/**
