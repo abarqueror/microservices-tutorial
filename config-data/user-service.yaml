@@ -16,3 +16,23 @@ eureka:
       #${spring.application.name} - Bind service
       #${spring.application.instance_id:${random.value}} Para multiples instancias, si tengo varias no pueden llamarse igual.Se asignará aleatroiamente
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+resilience4j.circuitbreaker:
+    instances:
+        carsCB:
+            registerHealthIndicator: true
+            slidingWindowSize: 10
+            permittedNumberOfCallsInHalfOpenState: 3
+            slidingWindowType: TIME_BASED
+            minimumNumberOfCalls: 4
+            waitDurationInOpenState: 5s
+            failureRateThreshold: 50
+            eventConsumerBufferSize: 10          
+        bikesCB:
+            registerHealthIndicator: true
+            slidingWindowSize: 10
+            permittedNumberOfCallsInHalfOpenState: 3
+            slidingWindowType: TIME_BASED
+            minimumNumberOfCalls: 20
+            waitDurationInOpenState: 50s
+            failureRateThreshold: 50
+            eventConsumerBufferSize: 10
