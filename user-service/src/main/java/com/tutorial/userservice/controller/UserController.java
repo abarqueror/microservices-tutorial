@@ -104,6 +104,14 @@ public class UserController {
            return ResponseEntity.ok(result);
     }
 
+
+    /* The fallback method mechanism works like a try/catch block. If a fallback method is configured,
+     every exception is forwarded to a fallback method executor. The fallback method executor is searching for
+     the best matching fallback method which can handle the exception. Similar to a catch block. The fallback
+     is executed independently of the current state of the circuit breaker.
+     https://resilience4j.readme.io/docs/getting-started-3
+     Implemented following https://youtu.be/uFNhDwbPBvY?list=PL4bT56Uw3S4yTSw5Cg1-mhgoS85fVeFkT
+     */
     private ResponseEntity<List<Car>> fallBackGetCars(@PathVariable("userId") int userId, RuntimeException e) {
         return new ResponseEntity("El usuario" + userId + " tiene los coches en el taller", HttpStatus.OK);
     }
