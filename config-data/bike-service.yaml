@@ -16,3 +16,6 @@ eureka:
       #${spring.application.name} - Bind service
       #${spring.application.instance_id:${random.value}} Para multiples instancias, si tengo varias no pueden llamarse igual.Se asignará aleatroiamente
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+spring:
+  application:
+    zipkin: htpp://localhost:9411
