@@ -19,3 +19,9 @@ eureka:
 spring:
   application:
     zipkin: htpp://localhost:9411
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+    propagation:
+      type: b3
